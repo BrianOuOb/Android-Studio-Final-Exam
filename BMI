@@ -1,0 +1,91 @@
+package com.example.finalexam;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
+
+public class SecondActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+    }
+    public void button_Click (View view){
+        EditText editTextHeight = (EditText) findViewById(R.id.txtHeight);
+        EditText editTextWeight = (EditText) findViewById(R.id.txtWeight);
+        double Height = Double.parseDouble(editTextHeight.getText().toString());
+        double Weight = Double.parseDouble(editTextWeight.getText().toString());
+        double h = Height / 100;
+        double bmi = Weight / (h * h);
+        TextView outputBmi = (TextView) findViewById(R.id.outputBMI);
+        TextView outputBody = (TextView) findViewById(R.id.outputBody);
+        outputBmi.setText("" + String.format("%.1f", bmi));
+        if (bmi < 18.5) {
+            outputBmi.setTextColor(getResources().getColor(R.color.blue));
+            outputBody.setText("UNDERWEIGHT");
+            outputBody.setTextColor(getResources().getColor(R.color.blue));
+        } else if (bmi >= 18.5 && bmi < 25) {
+            outputBmi.setTextColor(getResources().getColor(R.color.green));
+            outputBody.setText("NORMAL");
+            outputBody.setTextColor(getResources().getColor(R.color.green));
+        } else if (bmi >= 25 && bmi < 30) {
+            outputBmi.setTextColor(getResources().getColor(R.color.yello));
+            outputBody.setText("OVERWEIGHT");
+            outputBody.setTextColor(getResources().getColor(R.color.yello));
+        } else if (bmi >= 30 && bmi < 35) {
+            outputBmi.setTextColor(getResources().getColor(R.color.orange));
+            outputBody.setText("OBESE");
+            outputBody.setTextColor(getResources().getColor(R.color.orange));
+        } else {
+            outputBmi.setTextColor(getResources().getColor(R.color.red));
+            outputBody.setText("EXTREMLY OBESE");
+            outputBody.setTextColor(getResources().getColor(R.color.red));
+        }
+        EditText name = (EditText) findViewById(R.id.txtName);
+        String username = name.getText().toString();
+        TextView outputN = (TextView) findViewById(R.id.outputName);
+        outputN.setText("" + username);
+
+        EditText age = (EditText) findViewById(R.id.txtAge);
+        String userAge = age.getText().toString();
+        TextView outputA = (TextView) findViewById(R.id.outputAge);
+        outputA.setText("" + userAge);
+
+        EditText height = (EditText) findViewById(R.id.txtHeight);
+        String userHeight = height.getText().toString();
+        TextView outputH = (TextView) findViewById(R.id.outputHeight);
+        outputH.setText("" + userHeight);
+
+        EditText weight = (EditText) findViewById(R.id.txtWeight);
+        String userWeight = weight.getText().toString();
+        TextView outputW = (TextView) findViewById(R.id.outputWeight);
+        outputW.setText("" + userWeight);
+
+        String str = "";
+        RadioButton male = (RadioButton)findViewById(R.id.radioM);
+        if (male.isChecked())
+            str += "Male\n";
+        RadioButton female = (RadioButton)findViewById(R.id.radioF);
+        if (female.isChecked())
+            str += "Female\n";
+        RadioButton intersex = (RadioButton)findViewById(R.id.radioI);
+        if (intersex.isChecked())
+            str += "Intersex\n";
+        TextView outputG = (TextView) findViewById(R.id.outputGender);
+        outputG.setText(str);
+    }
+    public void button2_Click(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void button3_Click(View view){
+        Intent intent = new Intent(this, ThirdActivity.class);
+        startActivity(intent);
+    }
+}
