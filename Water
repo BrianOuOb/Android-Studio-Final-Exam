@@ -1,0 +1,46 @@
+package com.example.finalexam;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.TextView;
+
+public class ThirdActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_third);
+    }
+    public void button_Click (View view){
+        TextView outputT = (TextView) findViewById(R.id.outputTotal);
+        String str = "";
+        CheckBox onehundred=(CheckBox)findViewById(R.id.checkBox1);
+        if (onehundred.isChecked())
+            str += onehundred.getText() + "\n";
+        CheckBox twohundred=(CheckBox)findViewById(R.id.checkBox2);
+        if (twohundred.isChecked())
+            str += twohundred.getText() + "\n";
+        CheckBox threehundred=(CheckBox)findViewById(R.id.checkBox3);
+        if (threehundred.isChecked())
+            str += threehundred.getText() + "\n";
+        CheckBox fourhundred=(CheckBox)findViewById(R.id.checkBox4);
+        if (fourhundred.isChecked())
+            str += fourhundred.getText() + "\n";
+        CheckBox fivehundred=(CheckBox)findViewById(R.id.checkBox5);
+        if (fivehundred.isChecked())
+            str += fivehundred.getText() + "\n";
+        outputT.setText(str);
+    }
+    public void button2_Click(View view){
+        Intent intent = new Intent(this, SecondActivity.class);
+        startActivity(intent);
+    }
+    public void button3_Click(View view){
+        Intent intent = new Intent(this, ForthActivity.class);
+        startActivity(intent);
+    }
+}
